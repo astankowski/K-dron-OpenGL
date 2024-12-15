@@ -10,9 +10,13 @@ public:
     Mat4(); // Unit matrix
     operator const float* () const{return matrix_;}
     static Mat4 CreatePerspectiveProjectionMatrix(float fovy,
-                                       float aspect_ratio,
-                                       float near_plane,
-                                       float far_plane);
+                                                  float aspect_ratio,
+                                                  float near_plane,
+                                                  float far_plane);
+    static Mat4 CreateOrthoProjectionMatrix(float fovy,
+                                            float aspect_ratio,
+                                            float near_plane,
+                                            float far_plane);
     void RotateAboutX(float angle); //gedrees
     void RotateAboutY(float angle); //gedrees
     void RotateAboutZ(float angle); //gedrees

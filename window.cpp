@@ -32,7 +32,7 @@ void Window::Initialize(int major_gl_version, int minor_gl_version){
     InitModels();
     InitPrograms();
 
-    view_matrix_.Translate(0, 0, -2);
+    view_matrix_.Translate(0, 0, -4);
     SetViewMatrix();
 
     projection_matrix_ = Mat4::CreatePerspectiveProjectionMatrix(60, (float)width_/(float)height_, 0.1f, 100.0f);
@@ -137,12 +137,28 @@ void Window::KeyEvent(int key, int /*scancode*/, int action, int /*mods*/){
             case GLFW_KEY_SPACE:
               kdron_.ToggleAnimated();
             break;
+            case GLFW_KEY_HOME:
+              projection_matrix_ = Mat4::CreateOrthoProjectionMatrix(60, (float)width_/(float)height_, 0.1f, 100.0f);
+              SetProjectionMatrix();
+            break;
+            case GLFW_KEY_END:
+              projection_matrix_ = Mat4::CreatePerspectiveProjectionMatrix(60, (float)width_/(float)height_, 0.1f, 100.0f);
+              SetProjectionMatrix();
+            break;
             default:
             break;
         }
     }
     else if(action == GLFW_REPEAT){
         switch (key){
+            case GLFW_KEY_PAGE_UP:
+              view_matrix_.Translate(0, 0, +0.05);
+              SetViewMatrix();
+            break;
+            case GLFW_KEY_PAGE_DOWN:
+              view_matrix_.Translate(0, 0, -0.05);
+              SetViewMatrix();
+            break;
             case GLFW_KEY_LEFT:
               kdron_.Left();
             break;
@@ -155,12 +171,6 @@ void Window::KeyEvent(int key, int /*scancode*/, int action, int /*mods*/){
             case GLFW_KEY_DOWN:
               kdron_.Down();
             break;
-            case GLFW_KEY_PAGE_UP:
-              kdron_.ZoomIn();
-              view_matrix_.Translate(0, 0, -1);
-            break;
-            case GLFW_KEY_PAGE_DOWN:
-              view_matrix_.Translate(0, 0, -10);
             default:
             break;
         }

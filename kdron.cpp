@@ -11,30 +11,21 @@ Kdron::Kdron(float init_velocity, float init_angle){
 }
 
 void Kdron::Left(){
-    model_matrix_.SetUnitMatrix();
-    model_matrix_.RotateAboutY(90);
+    model_matrix_.RotateAboutY(1);
 }
 
 void Kdron::Right(){
-    model_matrix_.SetUnitMatrix();
-    model_matrix_.RotateAboutY(-90);
+    model_matrix_.RotateAboutY(-1);
 }
 
 void Kdron::Up(){
-
+    model_matrix_.RotateAboutX(1);
 }
 
 void Kdron::Down(){
-
+    model_matrix_.RotateAboutX(-1);
 }
 
-void Kdron::ZoomIn(){
-
-}
-
-void Kdron::ZoomOut(){
-
-}
 
 void Kdron::Move(float delta_t){
     if (!animated_) return;
@@ -69,7 +60,7 @@ void Kdron::Initialize(){
         { { 1.0f, -.0f, -1.0f, 1.0f }, { 0, 1, 0, 1 } }, //5
         { { 1.0f, 0.0f, 0.0f, 1.0f }, { 0.5, 0.7, 1, 1 } }, //6
         { { 0.0f, 1.0f, -1.0f, 1.0f }, { 1, 0.7, 1, 1 } }, //7
-        { { -1.0f, 0.0f, -1.0f, 1.0f }, { 0, 01, 0.7, 1 } }, //8
+        { { -1.0f, 0.0f, -1.0f, 1.0f }, { 0, 1, 0.7, 1 } }, //8
         { { -1.0f, 0.0f, 0.0f, 1.0f }, { 1, 0.7, 1, 1 } }, //9
         { { -1.0f, -1.0f, -1.0f, 1.0f }, { 0, 0, 1, 1 } }, //10
         { { 1.0f, 0.0f, 1.0f, 1.0f }, { 1, 0, 0.7, 1 } } //11
@@ -86,7 +77,7 @@ void Kdron::Initialize(){
         7,5,6,
         9,7,8,
         0,1,9, 0,10,9, 8,10,9,
-        10,4,7, 10,8,7, 7,4,5
+        8,10,4, 5,4,8, 7,8,3
     };
 
     glGenVertexArrays(1, &vao_);

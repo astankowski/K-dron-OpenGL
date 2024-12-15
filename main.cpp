@@ -7,7 +7,7 @@
 
 
 const int kMajorGLVersion = 4;
-const int kMinorGLVersion = 3;
+const int kMinorGLVersion = 2;
 
 static Window window("K-dron OpenGL", 800, 600);
 

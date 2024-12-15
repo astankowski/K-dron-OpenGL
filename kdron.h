@@ -23,8 +23,6 @@ class Kdron: public IndexModel, public MovableModel{
     void Right();
     void Up();
     void Down();
-    void ZoomIn();
-    void ZoomOut();
  private:
     float angle_;
     float velocity_;
