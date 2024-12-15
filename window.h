@@ -8,7 +8,7 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
-#include "cube.h"
+#include "kdron.h"
 #include "cameraprogram.h"
 #include "matma.h"
 
@@ -26,7 +26,7 @@ class Window{
     const char* title_;
     GLFWwindow* window_;
 
-    Cube cube_;
+    Kdron kdron_;
     ModelProgram program_;
     clock_t last_time_;
 

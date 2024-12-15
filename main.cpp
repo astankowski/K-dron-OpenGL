@@ -9,7 +9,7 @@
 const int kMajorGLVersion = 4;
 const int kMinorGLVersion = 3;
 
-static Window window("Postawy OpenGL", 800, 600);
+static Window window("K-dron OpenGL", 800, 600);
 
 /*** Callbacks   ***/
 void Resize (GLFWwindow* /*window*/, int new_width, int new_height){

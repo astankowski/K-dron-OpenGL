@@ -8,9 +8,9 @@
 #include "modelprogram.h"
 #include "matma.h"
 
-class KDRON: public IndexModel, public MovableModel{
+class Kdron: public IndexModel, public MovableModel{
  public:
-    Cube(float init_velocity=10, float init_angle=0);
+    Kdron(float init_velocity=10, float init_angle=0);
     void SetInitAngle(float angle){angle_= angle;}
     void SetVelocity(float velocity){velocity_= velocity;}
     void Initialize();
@@ -19,6 +19,12 @@ class KDRON: public IndexModel, public MovableModel{
     void SpeedUp();
     void SlowDown();
     void ToggleAnimated();
+    void Left();
+    void Right();
+    void Up();
+    void Down();
+    void ZoomIn();
+    void ZoomOut();
  private:
     float angle_;
     float velocity_;

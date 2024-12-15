@@ -16,8 +16,8 @@ Window::Window(const char * title, int width, int height){
     title_ = title;
     width_ = width;
     height_ = height;
-    cube_.SetInitAngle(15);
-    cube_.SetVelocity(45);
+    kdron_.SetInitAngle(15);
+    kdron_.SetVelocity(45);
     last_time_ = 0;
 }
 
@@ -95,7 +95,7 @@ void Window::InitGlewOrDie(){
 }
 
 void Window::InitModels(){
-    cube_.Initialize();
+    kdron_.Initialize();
 }
 
 void Window::InitPrograms(){
@@ -129,13 +129,13 @@ void Window::KeyEvent(int key, int /*scancode*/, int action, int /*mods*/){
                 glfwSetWindowShouldClose(window_, GLFW_TRUE);
             break;
             case GLFW_KEY_LEFT:
-              cube_.SlowDown();
+              kdron_.SlowDown();
             break;
             case GLFW_KEY_RIGHT:
-              cube_.SpeedUp();
+              kdron_.SpeedUp();
             break;
             case GLFW_KEY_SPACE:
-              cube_.ToggleAnimated();
+              kdron_.ToggleAnimated();
             break;
             default:
             break;
@@ -144,11 +144,23 @@ void Window::KeyEvent(int key, int /*scancode*/, int action, int /*mods*/){
     else if(action == GLFW_REPEAT){
         switch (key){
             case GLFW_KEY_LEFT:
-              cube_.SlowDown();
+              kdron_.Left();
             break;
             case GLFW_KEY_RIGHT:
-              cube_.SpeedUp();
+              kdron_.Right();
             break;
+            case GLFW_KEY_UP:
+              kdron_.Up();
+            break;
+            case GLFW_KEY_DOWN:
+              kdron_.Down();
+            break;
+            case GLFW_KEY_PAGE_UP:
+              kdron_.ZoomIn();
+              view_matrix_.Translate(0, 0, -1);
+            break;
+            case GLFW_KEY_PAGE_DOWN:
+              view_matrix_.Translate(0, 0, -10);
             default:
             break;
         }
@@ -160,10 +172,10 @@ void Window::Run(void){
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         clock_t now = clock();
         if (last_time_ == 0) last_time_ = now;
-        cube_.Move((float)(now - last_time_) / CLOCKS_PER_SEC);
+        kdron_.Move((float)(now - last_time_) / CLOCKS_PER_SEC);
         last_time_ = now;
 
-        cube_.Draw(program_);
+        kdron_.Draw(program_);
         glfwSwapBuffers(window_);
         glfwPollEvents();
     }

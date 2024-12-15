@@ -4,14 +4,39 @@
 #include "kdron.h"
 #include "vertices.h"
 
-Cube::Cube(float init_velocity, float init_angle){
+Kdron::Kdron(float init_velocity, float init_angle){
     velocity_ = init_velocity;
     angle_ = init_angle;
     animated_ = true;
 }
 
+void Kdron::Left(){
+    model_matrix_.SetUnitMatrix();
+    model_matrix_.RotateAboutY(90);
+}
 
-void Cube::Move(float delta_t){
+void Kdron::Right(){
+    model_matrix_.SetUnitMatrix();
+    model_matrix_.RotateAboutY(-90);
+}
+
+void Kdron::Up(){
+
+}
+
+void Kdron::Down(){
+
+}
+
+void Kdron::ZoomIn(){
+
+}
+
+void Kdron::ZoomOut(){
+
+}
+
+void Kdron::Move(float delta_t){
     if (!animated_) return;
     angle_ += delta_t * velocity_;
     if(angle_>360) angle_ -= 360;
@@ -21,43 +46,48 @@ void Cube::Move(float delta_t){
     model_matrix_.RotateAboutY(angle_);
 }
 
-
-
-void Cube::SpeedUp(){
+void Kdron::SpeedUp(){
     velocity_ *= 1.09544511501;
 }
 
-void Cube::SlowDown(){
+void Kdron::SlowDown(){
     velocity_ /= 1.09544511501;
 }
 
-void Cube::ToggleAnimated(){
+void Kdron::ToggleAnimated(){
     animated_ = ! animated_;
 }
 
-void Cube::Initialize(){
-    const ColorVertex kVertices[8] =
-    {
-        { { -.5f, -.5f,  .5f, 1.0f }, { 1, 1, 1, 1 } },
-        { { -.5f,  .5f,  .5f, 1.0f }, { 1, 0, 0, 1 } },
-        { {  .5f,  .5f,  .5f, 1.0f }, { 0, 1, 0, 1 } },
-        { {  .5f, -.5f,  .5f, 1.0f }, { 1, 1, 0, 1 } },
-        { { -.5f, -.5f, -.5f, 1.0f }, { 0, 0, 1, 1 } },
-        { { -.5f,  .5f, -.5f, 1.0f }, { 1, 0, 0, 1 } },
-        { {  .5f,  .5f, -.5f, 1.0f }, { 1, 0, 1, 1 } },
-        { {  .5f, -.5f, -.5f, 1.0f }, { 0, 0, 0, 1 } }
+void Kdron::Initialize(){
+    const ColorVertex kVertices[12] =
+    {   // x y z
+        { { -1.0f, -1.0f,  1.0f, 1.0f }, { 0, 0, 1, 1 } }, //0
+        { { -1.0f, 0.0f,  1.0f, 1.0f }, { 1, 1, 0.5, 1 } }, //1
+        { { 0.0f, -1.0f,  1.0f, 1.0f }, { 1, 0.7, 1, 1 } }, //2
+        { { 1.0f, -1.0f, 1.0f, 1.0f }, { 0, 0, 0.7, 1 } }, //3
+        { { 1.0f, -1.0f, -1.0f, 1.0f }, { 1, 0.7, 1, 1 } }, //4
+        { { 1.0f, -.0f, -1.0f, 1.0f }, { 0, 1, 0, 1 } }, //5
+        { { 1.0f, 0.0f, 0.0f, 1.0f }, { 0.5, 0.7, 1, 1 } }, //6
+        { { 0.0f, 1.0f, -1.0f, 1.0f }, { 1, 0.7, 1, 1 } }, //7
+        { { -1.0f, 0.0f, -1.0f, 1.0f }, { 0, 01, 0.7, 1 } }, //8
+        { { -1.0f, 0.0f, 0.0f, 1.0f }, { 1, 0.7, 1, 1 } }, //9
+        { { -1.0f, -1.0f, -1.0f, 1.0f }, { 0, 0, 1, 1 } }, //10
+        { { 1.0f, 0.0f, 1.0f, 1.0f }, { 1, 0, 0.7, 1 } } //11
     };
 
-    const GLuint kIndices[36] =
+    const GLuint kIndices[57] =
     {
-      0,1,2,  0,2,3,
-      4,0,3,  4,3,7,
-      4,5,1,  4,1,0,
-      3,2,6,  3,6,7,
-      1,5,6,  1,6,2,
-      7,6,5,  7,5,4
+        3,11,6, 3,6,4, 4,6,5,
+        7,9,2, 7,6,2,
+        2,1,9, 2,6,11,
+        2,3,11,
+        0,1,2,
+        0,3,10, 10,3,4,
+        7,5,6,
+        9,7,8,
+        0,1,9, 0,10,9, 8,10,9,
+        10,4,7, 10,8,7, 7,4,5
     };
-
 
     glGenVertexArrays(1, &vao_);
     glBindVertexArray(vao_);
@@ -81,14 +111,14 @@ void Cube::Initialize(){
 
 }
 
-void Cube::Draw(const ModelProgram &program) const{
+void Kdron::Draw(const ModelProgram &program) const{
 
     glUseProgram(program);
     glBindVertexArray(vao_);
 
     program.SetModelMatrix(model_matrix_);
 
-    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    glDrawElements(GL_TRIANGLES, 51, GL_UNSIGNED_INT, 0);
 
     glBindVertexArray(0);
     glUseProgram(0);
