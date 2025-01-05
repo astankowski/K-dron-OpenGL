@@ -122,7 +122,6 @@ Mat4 Mat4::CreateOrthoProjectionMatrix(
     Mat4 out(0);
 
     float y_scale = 1.0/tan(fovy * M_PI / 360.0 );
-    float x_scale = y_scale / aspect_ratio;
 
 
     float r = y_scale / aspect_ratio;

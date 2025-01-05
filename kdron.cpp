@@ -50,7 +50,7 @@ void Kdron::ToggleAnimated(){
 }
 
 void Kdron::Initialize(){
-    const ColorVertex kVertices[12] =
+    const ColorVertex kVertices[] =
     {   // x y z
         { { -1.0f, -1.0f,  1.0f, 1.0f }, { 0, 0, 1, 1 } }, //0
         { { -1.0f, 0.0f,  1.0f, 1.0f }, { 1, 1, 0.5, 1 } }, //1
@@ -66,18 +66,18 @@ void Kdron::Initialize(){
         { { 1.0f, 0.0f, 1.0f, 1.0f }, { 1, 0, 0.7, 1 } } //11
     };
 
-    const GLuint kIndices[57] =
+    const GLuint kIndices[51] =
     {
-        3,11,6, 3,6,4, 4,6,5,
+        3,4,5, 3,11,5, //3,11,6, 3,6,4, 4,6,5,
         7,9,2, 7,6,2,
         2,1,9, 2,6,11,
         2,3,11,
         0,1,2,
-        0,3,10, 10,3,4,
         7,5,6,
         9,7,8,
-        0,1,9, 0,10,9, 8,10,9,
-        8,10,4, 5,4,8, 7,8,3
+        8,10,4, 5,4,8, 8,5,7,
+        0,1,10, 1,8,10, //0,1,9, 0,10,9, 8,10,9,
+        0,3,10, 10,3,4
     };
 
     glGenVertexArrays(1, &vao_);
