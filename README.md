@@ -24,6 +24,7 @@ To build and run the project, follow these steps:
     
     <details>
       <summary>Example output:</summary>
+        
         ```bash
         g++ -c -Wall -DDEBUG -g3 -fpermissive -MMD baseprogram.cpp -o baseprogram.o -lX11 -lglfw -lGL -lGLU -lGLEW -lm
         g++ -c -Wall -DDEBUG -g3 -fpermissive -MMD cameraprogram.cpp -o cameraprogram.o -lX11 -lglfw -lGL -lGLU -lGLEW -lm
@@ -47,6 +48,7 @@ To build and run the project, follow these steps:
     
     <details>
       <summary>Example output:</summary>
+        
         Example output:
         ```bash
         rm -f cube baseprogram.o cameraprogram.o cube.o glerror.o indexmodel.o kdron.o main.o matma.o modelprogram.o window.o
