@@ -5,9 +5,7 @@ OBJECTS = $(SOURCES:.cpp=.o)
 CFLAGS=-c -Wall -DDEBUG -g3 -fpermissive -MMD
 
 ifeq ($(OS),Windows_NT)
-# -l:pelna forma biblioteki bez autodopasowywania lib*.a W zwiazku z czym trzeba to ustawic jawnie
 #LIBS =-lglfw3 -l:glew32.dll -lopengl32 -lm -lglu32 -lgdi32
-# W razie problemów z biblioteką glew wypróbować wiersz wyżej
 LIBS =-lglfw3 -lglew32 -lopengl32 -lm -lglu32 -lgdi32
 EXECUTABLE = $(NAME).exe
 #LDFLAGS=-Wl,--subsystem,windows
@@ -22,11 +20,9 @@ clean:
 	rm -f $(EXECUTABLE) $(OBJECTS)
 	rm -f $(SOURCES:%.cpp=%.d)
 
-# compilation
 %.o: %.cpp
 	$(CXX) $(CFLAGS) $< -o $@ $(LIBS)
 
-# linking
 $(EXECUTABLE): $(OBJECTS) 
 	$(CXX) $(OBJECTS) -o $@ $(LDFLAGS) $(LIBS)
 
