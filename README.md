@@ -25,7 +25,6 @@ To build and run the project, follow these steps:
     <details>
       <summary>Example output:</summary>
         
-        ```bash
         g++ -c -Wall -DDEBUG -g3 -fpermissive -MMD baseprogram.cpp -o baseprogram.o -lX11 -lglfw -lGL -lGLU -lGLEW -lm
         g++ -c -Wall -DDEBUG -g3 -fpermissive -MMD cameraprogram.cpp -o cameraprogram.o -lX11 -lglfw -lGL -lGLU -lGLEW -lm
         g++ -c -Wall -DDEBUG -g3 -fpermissive -MMD cube.cpp -o cube.o -lX11 -lglfw -lGL -lGLU -lGLEW -lm
@@ -38,7 +37,6 @@ To build and run the project, follow these steps:
         g++ -c -Wall -DDEBUG -g3 -fpermissive -MMD window.cpp -o window.o -lX11 -lglfw -lGL -lGLU -lGLEW -lm
         g++ baseprogram.o cameraprogram.o cube.o glerror.o indexmodel.o kdron.o main.o matma.o modelprogram.o window.o -o cube  -lX11 -lglfw -lGL -lGLU -lGLEW -lm
         ./cube -sync -gldebug
-        ```
     </details>
 
 2. Clean up build files:
@@ -49,11 +47,8 @@ To build and run the project, follow these steps:
     <details>
       <summary>Example output:</summary>
         
-        Example output:
-        ```bash
         rm -f cube baseprogram.o cameraprogram.o cube.o glerror.o indexmodel.o kdron.o main.o matma.o modelprogram.o window.o
         rm -f baseprogram.d cameraprogram.d cube.d glerror.d indexmodel.d kdron.d main.d matma.d modelprogram.d window.d
-        ```
     </details>
 
 ---
